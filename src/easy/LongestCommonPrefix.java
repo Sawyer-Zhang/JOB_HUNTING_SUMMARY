@@ -11,12 +11,11 @@ import java.util.Scanner;
  */
 public class LongestCommonPrefix {
 	/**
-	 * 截取共同的前缀
-	 * 开始时出现了两个理解错误的地方
+	 *   截取共同的前缀
+	 *  开始时出现了两个理解错误的地方
 	 * 1、关于subString方法，它截取的是beginIndex到endIndex-1的字符串，代码中prefix.length()-1
-	 * 实际上每一次都是舍弃最后一位
+	 *  实际上每一次都是舍弃最后一位
 	 * 2、因为是查找相同前缀，使用indexOf判断时，不包含返回-1，包含了返回0（从第一位开始）
-	 * 
 	 * 这种方法首先是把字符串数组的第一个字符串默认为前缀，和后面的每一个字符串做比对，如果不是，取前n-1位继续比对
 	 * @param strs
 	 * @return
