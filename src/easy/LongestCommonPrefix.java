@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class LongestCommonPrefix {
 	/**
-	 *   截取共同的前缀
+	 *  截取共同的前缀
 	 *  开始时出现了两个理解错误的地方
 	 * 1、关于subString方法，它截取的是beginIndex到endIndex-1的字符串，代码中prefix.length()-1
 	 *  实际上每一次都是舍弃最后一位
