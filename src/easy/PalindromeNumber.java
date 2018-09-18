@@ -17,7 +17,7 @@ public class PalindromeNumber {
 			int begin = temp % 10;//个位数
 			temp = temp / 10;
 			if (reverse > Integer.MAX_VALUE/10 || (reverse == Integer.MAX_VALUE / 10 && begin > 7)) return false;
-            if (reverse < Integer.MIN_VALUE/10 || (reverse == Integer.MIN_VALUE / 10 && begin < -8)) return false;
+            		if (reverse < Integer.MIN_VALUE/10 || (reverse == Integer.MIN_VALUE / 10 && begin < -8)) return false;
 			reverse = reverse * 10 + begin;
 		}
 		if(reverse != x || x < 0) {
