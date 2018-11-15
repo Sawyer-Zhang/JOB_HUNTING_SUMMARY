@@ -18,3 +18,9 @@ select Name as Customers from Customers
 where Id not in (
 select CustomerId from Orders
 )
+#Delete Duplicate Emails
+delete q from Person p,Person q where p.Id<q.Id and p.Email=q.Email;
+
+#Rising Temperature
+select a.Id from Weather a inner join Weather b on to_days(a.RecordDate)=to_days(b.RecordDate)+1 
+where a.Temperature>b.Temperature
