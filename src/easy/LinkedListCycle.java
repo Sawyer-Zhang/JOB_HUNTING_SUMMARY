@@ -1,5 +1,7 @@
 package easy;
 
+import util.ListNode;
+
 /**
  * 
  * 
@@ -9,25 +11,15 @@ package easy;
  */
 public class LinkedListCycle {
 
-	private static class ListNode {
-		int val;
-		ListNode next;
-
-		public ListNode(int x) {
-			val = x;
-			next = null;
-		}
-	}
-
 	public boolean hasCycle(ListNode head) {
 		if (head == null) {
 			return false;
 		}
 		ListNode walker = head;
 		ListNode runner = head;
-		while (null != runner.next && null != runner.next.next) {
-			walker = walker.next;
-			runner = runner.next.next;
+		while (null != runner.getNext() && null != runner.getNext().getNext()) {
+			walker = walker.getNext();
+			runner = runner.getNext().getNext();
 			if (walker == runner) {
 				return true;
 			}

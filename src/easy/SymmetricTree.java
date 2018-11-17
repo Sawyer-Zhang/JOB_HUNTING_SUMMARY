@@ -2,6 +2,8 @@ package easy;
 
 import java.util.Stack;
 
+import util.TreeNode;
+
 /**
  * Given a binary tree, check whether it is a mirror of itself (ie, symmetric
  * around its center).
@@ -13,14 +15,6 @@ import java.util.Stack;
  *         2018年8月19日
  */
 public class SymmetricTree {
-	private static class TreeNode{
-		private int val;
-		private TreeNode left;
-		private TreeNode right;
-		public TreeNode(int val) {
-			this.val = val;
-		}
-	}
 	/**
 	 * 递归实现，每次解题都想不起来用
 	 * 
@@ -31,19 +25,22 @@ public class SymmetricTree {
 		if (root == null) {
 			return true;
 		}
-		return isSymmetric(root.left , root.right);
+		return isSymmetric(root.getLeft(), root.getRight());
 	}
+
 	public boolean isSymmetric(TreeNode left, TreeNode right) {
 		if (left == null || right == null) {
 			return left == right;
 		}
-		if (left.val != right.val) {
+		if (left.getVal() != right.getVal()) {
 			return false;
 		}
-		return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+		return isSymmetric(left.getLeft(), right.getRight()) && isSymmetric(left.getRight(), right.getLeft());
 	}
+
 	/**
 	 * 非递归做法，判断太多了，写着写着就绕晕了
+	 * 
 	 * @param root
 	 * @return
 	 */
@@ -54,41 +51,41 @@ public class SymmetricTree {
 		TreeNode left;
 		TreeNode right;
 		Stack<TreeNode> treeNodeStack = new Stack<TreeNode>();
-		if (root.left != null) {
-			if (root.right == null) {
+		if (root.getLeft() != null) {
+			if (root.getRight() == null) {
 				return false;
 			}
-			treeNodeStack.push(root.left);
-			treeNodeStack.push(root.right);
-		}else if(root.right != null){
-            return false;
-        }
-		while(!treeNodeStack.isEmpty()) {
+			treeNodeStack.push(root.getLeft());
+			treeNodeStack.push(root.getRight());
+		} else if (root.getRight() != null) {
+			return false;
+		}
+		while (!treeNodeStack.isEmpty()) {
 			if (treeNodeStack.size() % 2 != 0) {
 				return false;
 			}
 			right = treeNodeStack.pop();
 			left = treeNodeStack.pop();
-			if (right.val != left.val) {
+			if (right.getVal() != left.getVal()) {
 				return false;
 			}
-			if (left.left != null) {
-				if (right.right == null) {
+			if (left.getLeft() != null) {
+				if (right.getRight() == null) {
 					return false;
 				}
-				treeNodeStack.push(left.left);
-				treeNodeStack.push(right.right);
-			}else if(right.right != null){
+				treeNodeStack.push(left.getLeft());
+				treeNodeStack.push(right.getRight());
+			} else if (right.getRight() != null) {
 				return false;
 			}
-			
-			if (left.right != null) {
-				if(right.left == null) {
+
+			if (left.getRight() != null) {
+				if (right.getLeft() == null) {
 					return false;
 				}
-				treeNodeStack.push(left.right);
-				treeNodeStack.push(right.left);
-			}else if(right.left != null) {
+				treeNodeStack.push(left.getRight());
+				treeNodeStack.push(right.getLeft());
+			} else if (right.getLeft() != null) {
 				return false;
 			}
 		}

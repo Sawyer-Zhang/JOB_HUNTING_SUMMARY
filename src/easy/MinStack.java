@@ -15,8 +15,8 @@ import java.util.Stack;
  *         2018年9月26日
  */
 public class MinStack {
-	private Stack min;
-	private Stack stack;
+	private Stack<Integer> min;
+	private Stack<Integer> stack;
 
 	public MinStack() {
 		min = new Stack<Integer>();

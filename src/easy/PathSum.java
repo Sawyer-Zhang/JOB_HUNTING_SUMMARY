@@ -2,6 +2,8 @@ package easy;
 
 import java.util.Stack;
 
+import util.TreeNode;
+
 /**
  * Given a binary tree and a sum, determine if the tree has a root-to-leaf path
  * such that adding up all the values along the path equals the given sum.
@@ -11,15 +13,6 @@ import java.util.Stack;
  *         2018年9月23日
  */
 public class PathSum {
-	private static class TreeNode {
-		private int val;
-		private TreeNode left;
-		private TreeNode right;
-
-		public TreeNode(int val) {
-			this.val = val;
-		}
-	}
 
 	/**
 	 * recursion solution
@@ -32,13 +25,15 @@ public class PathSum {
 		if (root == null) {
 			return false;
 		}
-		if (root.left == null && root.right == null && root.val - sum == 0) {
+		if (root.getLeft() == null && root.getRight() == null && root.getVal() - sum == 0) {
 			return true;
 		}
-		return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+		return hasPathSum(root.getLeft(), sum - root.getVal()) || hasPathSum(root.getRight(), sum - root.getVal());
 	}
+
 	/**
 	 * dfs
+	 * 
 	 * @param root
 	 * @param sum
 	 * @return
@@ -47,8 +42,8 @@ public class PathSum {
 		if (root == null) {
 			return false;
 		}
-		if (root.left == null && root.right == null) {
-			return root.val == sum;
+		if (root.getLeft() == null && root.getRight() == null) {
+			return root.getVal() == sum;
 		}
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		TreeNode currentNode = root;
@@ -57,19 +52,19 @@ public class PathSum {
 		while (currentNode != null || !stack.isEmpty()) {
 			while (currentNode != null) {
 				stack.push(currentNode);
-				result = result + currentNode.val;
-				currentNode = currentNode.left;
+				result = result + currentNode.getVal();
+				currentNode = currentNode.getLeft();
 			}
 			currentNode = stack.peek();
-			if (currentNode.left == null && currentNode.right == null && result == sum) {
+			if (currentNode.getLeft() == null && currentNode.getRight() == null && result == sum) {
 				return true;
 			}
-			if (currentNode.right != null && temp != currentNode.right) {
-				currentNode = currentNode.right;
+			if (currentNode.getRight() != null && temp != currentNode.getRight()) {
+				currentNode = currentNode.getRight();
 			} else {
 				temp = currentNode;
 				stack.pop();
-				result = result - currentNode.val;
+				result = result - currentNode.getVal();
 				currentNode = null;
 			}
 

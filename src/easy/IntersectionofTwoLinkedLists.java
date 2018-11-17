@@ -1,5 +1,7 @@
 package easy;
 
+import util.ListNode;
+
 /**
  * Write a program to find the node at which the intersection of two singly
  * linked lists begins.
@@ -8,23 +10,14 @@ package easy;
  * @version 1.0 at 2018年9月27日
  */
 public class IntersectionofTwoLinkedLists {
-	private static class ListNode {
-		private int val;
-		private ListNode next;
-
-		public ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-	}
 
 	private int listLength(ListNode node) {
 		int len = 0;
 		if (node == null) {
 			return len;
 		}
-		while (node.next != null) {
-			node = node.next;
+		while (node.getNext() != null) {
+			node = node.getNext();
 			len++;
 		}
 		return len;
@@ -43,23 +36,23 @@ public class IntersectionofTwoLinkedLists {
 		if (headA == null || headB == null) {
 			return null;
 		}
-		if (headA.val == headB.val) {
+		if (headA.getVal() == headB.getVal()) {
 			return headA;
 		}
 		while (lenA < lenB) {
-			headB = headB.next;
+			headB = headB.getNext();
 			lenB--;
 		}
 		while (lenA > lenB) {
-			headA = headA.next;
+			headA = headA.getNext();
 			lenA--;
 		}
 		while (headA != null && headB != null) {
-			if (headA.val == headB.val) {
+			if (headA.getVal() == headB.getVal()) {
 				return headA;
 			}
-			headA = headA.next;
-			headB = headB.next;
+			headA = headA.getNext();
+			headB = headB.getNext();
 		}
 		return null;
 	}
@@ -80,8 +73,8 @@ public class IntersectionofTwoLinkedLists {
 		ListNode a = headA;
 		ListNode b = headB;
 		while (a != b) {
-			a = a == null ? headB : a.next;
-			b = b == null ? headA : b.next;
+			a = a == null ? headB : a.getNext();
+			b = b == null ? headA : b.getNext();
 		}
 		return a;
 	}

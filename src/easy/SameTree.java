@@ -2,6 +2,8 @@ package easy;
 
 import java.util.LinkedList;
 
+import util.TreeNode;
+
 /**
  * Given two binary trees, write a function to check if they are the same or
  * not.
@@ -14,16 +16,6 @@ import java.util.LinkedList;
  *         2018年8月18日
  */
 public class SameTree {
-	private static class TreeNode {
-		private int val;
-		private TreeNode left;
-		private TreeNode right;
-
-		public TreeNode(int value) {
-			this.val = value;
-		}
-	}
-
 	/**
 	 * bfs广度优先遍历，非递归做法
 	 * 
@@ -47,21 +39,21 @@ public class SameTree {
 		while (!queue1.isEmpty() && !queue2.isEmpty()) {
 			currentp = queue1.poll();
 			currentq = queue2.poll();
-			if (currentp.val != currentq.val) {
+			if (currentp.getVal() != currentq.getVal()) {
 				return false;
 			}
-			if (currentp.left != null && currentq.left != null) {
-				queue1.offer(currentp.left);
-				queue2.offer(currentq.left);
-			} else if (currentp.left == null && currentq.left == null) {
+			if (currentp.getLeft() != null && currentq.getLeft() != null) {
+				queue1.offer(currentp.getLeft());
+				queue2.offer(currentq.getLeft());
+			} else if (currentp.getLeft() == null && currentq.getLeft() == null) {
 
 			} else {
 				return false;
 			}
-			if (currentp.right != null && currentq.right != null) {
-				queue1.offer(currentp.right);
-				queue2.offer(currentq.right);
-			} else if (currentp.right == null && currentq.right == null) {
+			if (currentp.getRight() != null && currentq.getRight() != null) {
+				queue1.offer(currentp.getRight());
+				queue2.offer(currentq.getRight());
+			} else if (currentp.getRight() == null && currentq.getRight() == null) {
 
 			} else {
 				return false;
@@ -72,6 +64,7 @@ public class SameTree {
 		}
 		return true;
 	}
+
 	/**
 	 * bfs递归实现
 	 * 
@@ -84,8 +77,8 @@ public class SameTree {
 			return true;
 		if (p == null || q == null)
 			return false;
-		if (p.val == q.val) {
-			return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+		if (p.getVal() == q.getVal()) {
+			return isSameTree(p.getLeft(), q.getLeft()) && isSameTree(p.getRight(), q.getRight());
 		}
 		return false;
 	}

@@ -3,6 +3,8 @@ package easy;
 import java.util.LinkedList;
 import java.util.Stack;
 
+import util.TreeNode;
+
 /**
  * Given a binary tree, find its maximum depth.
  * 
@@ -14,16 +16,10 @@ import java.util.Stack;
  *         2018年8月20日
  */
 public class MaximumDepthofBinaryTree {
-	private static class TreeNode{
-		private int val;
-		private TreeNode left;
-		private TreeNode right;
-		public TreeNode(int val) {
-			this.val = val;
-		}
-	}
+
 	/**
 	 * dfs使用stack
+	 * 
 	 * @param node
 	 * @return
 	 */
@@ -36,23 +32,25 @@ public class MaximumDepthofBinaryTree {
 		int max = 0;
 		stack.push(root);
 		value.push(1);
-		while(!stack.isEmpty()) {
+		while (!stack.isEmpty()) {
 			TreeNode node = stack.pop();
 			int temp = value.pop();
 			max = Math.max(max, temp);
-			if (node.left != null) {
-				stack.push(node.left);
+			if (node.getLeft() != null) {
+				stack.push(node.getLeft());
 				value.push(temp + 1);
 			}
-			if (node.right != null) {
-				stack.push(node.right);
+			if (node.getRight() != null) {
+				stack.push(node.getRight());
 				value.push(temp + 1);
 			}
 		}
 		return max;
 	}
+
 	/**
 	 * bfs使用队列来实现
+	 * 
 	 * @param root
 	 * @return
 	 */
@@ -63,23 +61,25 @@ public class MaximumDepthofBinaryTree {
 		LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
 		queue.offer(root);
 		int result = 0;
-		while(!queue.isEmpty()) {
+		while (!queue.isEmpty()) {
 			int size = queue.size();
-			while(size-- > 0) {
+			while (size-- > 0) {
 				TreeNode node = queue.poll();
-				if (node.left != null) {
-					queue.offer(node.left);
+				if (node.getLeft() != null) {
+					queue.offer(node.getLeft());
 				}
-				if (node.right != null) {
-					queue.offer(node.right);
+				if (node.getRight() != null) {
+					queue.offer(node.getRight());
 				}
 			}
 			result++;
 		}
 		return result;
 	}
+
 	/**
 	 * 递归实现
+	 * 
 	 * @param root
 	 * @return
 	 */
@@ -87,6 +87,6 @@ public class MaximumDepthofBinaryTree {
 		if (root == null) {
 			return 0;
 		}
-		return 1 + Math.max(maxDepth2(root.left), maxDepth2(root.right));
+		return 1 + Math.max(maxDepth2(root.getLeft()), maxDepth2(root.getRight()));
 	}
 }

@@ -3,7 +3,8 @@ package easy;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+
+import util.TreeNode;
 
 /**
  * Given a binary tree, return the bottom-up level order traversal of its nodes'
@@ -14,17 +15,10 @@ import java.util.Stack;
  *         2018年8月21日
  */
 public class BinaryTreeLevelOrderTraversalII {
-	private static class TreeNode {
-		private int val;
-		private TreeNode left;
-		private TreeNode right;
 
-		public TreeNode(int val) {
-			this.val = val;
-		}
-	}
 	/**
 	 * bfs
+	 * 
 	 * @param root
 	 * @return
 	 */
@@ -35,18 +29,18 @@ public class BinaryTreeLevelOrderTraversalII {
 		}
 		LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
 		queue.offer(root);
-		while(!queue.isEmpty()) {
+		while (!queue.isEmpty()) {
 			int size = queue.size();
 			List<Integer> levelResult = new LinkedList<Integer>();
-			while(size-- > 0) {
+			while (size-- > 0) {
 				TreeNode node = queue.poll();
-				if (node.left != null) {
-					queue.offer(node.left);
+				if (node.getLeft() != null) {
+					queue.offer(node.getLeft());
 				}
-				if (node.right != null) {
-					queue.offer(node.right);
+				if (node.getRight() != null) {
+					queue.offer(node.getRight());
 				}
-				levelResult.add(node.val);
+				levelResult.add(node.getVal());
 			}
 			result.add(0, levelResult);
 		}

@@ -1,53 +1,45 @@
 package easy;
 
+import util.ListNode;
+
 /**
- * Given a sorted linked list, delete all duplicates such that each element appear only once.
+ * Given a sorted linked list, delete all duplicates such that each element
+ * appear only once.
+ * 
  * @author Zhang shaoyang
  * 
- * 2018年8月18日
+ *         2018年8月18日
  */
 public class RemoveDuplicatesFromSortedList {
-	private static class ListNode{
-		private int value;
-		private ListNode next;
-		public ListNode(int value, ListNode next) {
-			this.value = value;
-			this.next = next;
-		}
-		public ListNode(int value) {
-			this.value = value;
-		}
-		public void setNext(ListNode next) {
-			this.next = next;
-		}
-	}
 	public ListNode removeDuplicatesFromSortesList(ListNode head) {
 		ListNode temp = head;
-		while(temp != null) {
-			if (temp.next == null) {
+		while (temp != null) {
+			if (temp.getNext() == null) {
 				break;
 			}
-			if (temp.value == temp.next.value) {
-				temp.next = temp.next.next;
-			}else {
-				temp = temp.next;
+			if (temp.getVal() == temp.getNext().getVal()) {
+				temp.setNext(temp.getNext().getNext());
+			} else {
+				temp = temp.getNext();
 			}
 		}
 		return head;
 	}
+
 	public static String print(ListNode ln) {
 		StringBuilder sb = new StringBuilder();
 		if (ln == null) {
 			return null;
 		}
-		sb.append(ln.value);
-		while(ln.next != null) {
-			sb.append(ln.next.value);
-			ln = ln.next;
+		sb.append(ln.getVal());
+		while (ln.getNext() != null) {
+			sb.append(ln.getNext().getVal());
+			ln = ln.getNext();
 		}
 		return sb.toString();
 	}
-	public static void main(String []args) {
+
+	public static void main(String[] args) {
 		ListNode l1 = new ListNode(1);
 		ListNode l2 = new ListNode(1);
 		ListNode l3 = new ListNode(2);
