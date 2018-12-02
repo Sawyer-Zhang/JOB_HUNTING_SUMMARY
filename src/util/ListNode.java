@@ -36,4 +36,33 @@ public class ListNode {
 		this.next = next;
 	}
 
+	public static String toString(ListNode head) {
+		if (head == null) {
+			return null;
+		}
+		StringBuilder listNodeStr = new StringBuilder(String.valueOf(head.getVal()));
+		while (head.getNext() != null) {
+			listNodeStr.append("->");
+			listNodeStr.append(String.valueOf(head.getNext().getVal()));
+			head = head.getNext();
+		}
+		return listNodeStr.toString();
+	}
+
+	public static void main(String[] args) {
+		ListNode head = new ListNode(1);
+		ListNode sec = new ListNode(2);
+		ListNode thr = new ListNode(6);
+		ListNode fou = new ListNode(3);
+		ListNode fiv = new ListNode(4);
+		ListNode six = new ListNode(5);
+		ListNode sev = new ListNode(6);
+		head.setNext(sec);
+		sec.setNext(thr);
+		thr.setNext(fou);
+		fou.setNext(fiv);
+		fiv.setNext(six);
+		six.setNext(sev);
+		System.out.println(ListNode.toString(head));
+	}
 }
