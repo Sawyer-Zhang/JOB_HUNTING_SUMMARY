@@ -9,6 +9,7 @@ import java.util.Map;
  * 
  * @description:Given a string s and a non-empty string p, find all the start
  *                    indices of p's anagrams in s.
+ *                    找出全部p字符串的全排列在s字符串中出现的起始位置
  * 
  * @author Zhang shaoyang
  * 
@@ -29,7 +30,9 @@ public class FindAllAnagramsInAString {
 		int end = 0;
 		int begin = 0;
 		/**
-		 * 外层while循环的目的是找出第一次出现全部子串中字符的终止为止，说明起点到end指针指向的位置中可能出现 子串。count其实就是记录子串的字符个数
+		 * 外层while循环的目的是
+		 * 找出字符串s出现全部p串中字符的位置，将这个位置定为end
+         * 说明起点到end指针指向的位置中可能出现子串的排列
 		 */
 		while (end < s.length()) {
 			char endChar = s.charAt(end);
@@ -41,8 +44,11 @@ public class FindAllAnagramsInAString {
 			}
 			end++;
 			/**
-			 * 内层while循环主要的目的首先是找到第一次出现子串中字符的位置，之后恢复计数器 判断end-begin之间是不是和子串长度相同，如果相同就是其中一个解
-			 * 只要找到其中一个字符就会退出循环，因为这时候两个指针中剩余的字符不足以组成一个子串的逆序，需要 到外层循环中继续遍历
+			 * count为0的时候说明begin到end中出现了可以构成p字符串的全部字符
+             * 判断end-begin之间是不是和子串长度相同，如果相同就是其中一个解
+			 * 只要找到其中一个字符就会退出循环
+             * begin指针指向的是第一个出现存在于p串中的字符假设为a，将count加一的目的是退出循环
+             * 在外层循环中重新寻找一个a字符，和之前已经找到的end-begin中的字符重新满足了构成所有p串中字符的条件
 			 */
 			while (count == 0) {
 				char beginChar = s.charAt(begin);
