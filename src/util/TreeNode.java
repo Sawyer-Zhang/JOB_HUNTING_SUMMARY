@@ -8,9 +8,9 @@ package util;
  *         2018年11月17日
  */
 public class TreeNode {
-	private int val;
-	private TreeNode left;
-	private TreeNode right;
+	public int val;
+	public TreeNode left;
+	public TreeNode right;
 
 	public TreeNode(int val) {
 		this.val = val;
