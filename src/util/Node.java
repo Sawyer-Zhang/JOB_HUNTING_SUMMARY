@@ -8,8 +8,8 @@ import java.util.List;
  * @CreateDate: 2018/12/27 0027 22:34
  */
 public class Node {
-    private int val;
-    private List<Node> children;
+	public int val;
+    public List<Node> children;
 
     public Node(int val, List<Node> children) {
         this.val = val;
