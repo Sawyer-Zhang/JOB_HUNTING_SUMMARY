@@ -18,6 +18,15 @@ package easy;
  */
 public class RangeAdditionII {
 	public int maxCount(int m, int n, int[][] ops) {
-		return 0;
+		if (ops == null || ops.length == 0 || ops[0].length == 0) {
+			return m * n;
+		}
+		int minx = ops[0][0];
+		int miny = ops[0][1];
+		for (int i = 0; i <= ops.length; i++) {
+			minx = Math.min(minx, ops[i][0]);
+			miny = Math.min(miny, ops[i][1]);
+		}
+		return minx * miny;
 	}
 }
