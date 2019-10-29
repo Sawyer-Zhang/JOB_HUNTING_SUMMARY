@@ -25,7 +25,7 @@ public class AddBinary {
 			if (alen >= 0) {
 				sum += a.charAt(alen--) - '0';
 			}
-			if (blen >= 0) {
+			if (blen >= 0) { 
 				sum += b.charAt(blen--) - '0';
 			}
 			sb.append(sum % 2);
