@@ -24,3 +24,5 @@ delete q from Person p,Person q where p.Id<q.Id and p.Email=q.Email;
 #Rising Temperature
 select a.Id from Weather a inner join Weather b on to_days(a.RecordDate)=to_days(b.RecordDate)+1 
 where a.Temperature>b.Temperature
+
+select * from cinema where description != 'boring' and mod(id, 2)=1 order by rating desc;

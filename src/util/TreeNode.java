@@ -1,5 +1,8 @@
 package util;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 树结点工具类
  * 
@@ -46,4 +49,37 @@ public class TreeNode {
 		this.right = right;
 	}
 
+	public static TreeNode getSimpleTree() {
+		TreeNode root = new TreeNode(1);
+		TreeNode node1 = new TreeNode(2);
+		TreeNode node2 = new TreeNode(3);
+		TreeNode node3 = new TreeNode(4);
+		root.setLeft(node1);
+		root.setRight(node2);
+		node1.setLeft(node3);
+		return root;
+	}
+
+	/**
+	 * 使用层次遍历打印树节点
+	 */
+	public static String toString(TreeNode root) {
+		StringBuilder result = new StringBuilder();
+		if (root == null) {
+			return result.toString();
+		}
+		Queue<TreeNode> treeNodeQueue = new LinkedList<TreeNode>();
+		treeNodeQueue.add(root);
+		while (!treeNodeQueue.isEmpty()) {
+			TreeNode temp = treeNodeQueue.poll();
+			if (temp.left != null) {
+				treeNodeQueue.add(temp.left);
+			}
+			if (temp.right != null) {
+				treeNodeQueue.add(temp.right);
+			}
+			result.append(temp.val);
+		}
+		return result.toString();
+	}
 }
